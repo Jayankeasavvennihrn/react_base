@@ -1,0 +1,39 @@
+.header-component {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+    background-color: #282c34;
+    color: white;
+}
+
+.header-component .title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.header-component .employee-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-component .employee-section .button-section .attendance-button {
+    background-color: skyblue;
+    border: none;
+    color: black;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.header-component .employee-section .employee-info {
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+}
+
+.header-component .employee-section .counter-section a {
+    cursor: pointer;
+    color: red;
+}
