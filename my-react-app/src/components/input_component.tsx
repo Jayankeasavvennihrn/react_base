@@ -1,14 +1,15 @@
 import { useState } from "react";
 
 interface InputComponentProps {
-    defaultValue?: string
+    defaultValue?: string,
+    onSave: (value: string) => void
 }
 
-function InputComponent(probs: InputComponentProps) {
-    const [inputValue, setInputValue] = useState(probs.defaultValue ?? "");
+function InputComponent(props: InputComponentProps) {
+    const [inputValue, setInputValue] = useState(props.defaultValue ?? "");
     return <>
         <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
-        <button >{inputValue ? "Update Name" : "Add"}</button>
+        <button onClick={() => props.onSave(inputValue)}>{inputValue ? "Update Name" : "Add"}</button>
     </>;
 }
 

@@ -1,4 +1,4 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 // import reactLogo from './assets/react.svg'
 // import viteLogo from './assets/vite.svg'
 // import heroImg from './assets/hero.png'
@@ -7,22 +7,21 @@
 import Header from './components/header'
 import InputComponent from './components/input_component'
 
-function App() {
-  // const [employee, setEmployee] = useState({
-  //   name: "Jayan Keasav Vennih",
-  //   id: 12345,
-  //   status: "Present"
-  // })
 
-  // const updateFunction = () => {
-  //   setEmployee({ ...employee, name: "Updated Name" })
-  // }
+
+function App() {
+  const [name, setName] = useState("Jayan Keasav Vennih");
+
+  const updateFunction = (value: string) => {
+    console.log(value);
+    setName(value);
+  }
 
   return (
     <>
-    <Header />
+    <Header name={name} id={12345} status="Absent" />
     {/* <BodyComponent /> */}
-    <InputComponent defaultValue="" />
+    <InputComponent defaultValue={name} onSave={updateFunction} />
       {/* <section id="center">
         <div className="hero">
           <img src={heroImg} className="base" width="170" height="179" alt="" />
