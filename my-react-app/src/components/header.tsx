@@ -6,6 +6,8 @@ interface Employee {
     name: string
     id: number
     status?: string
+    email?: string
+    phone?: string
 }
 
 function Header(props: Employee) {
@@ -44,7 +46,7 @@ function Header(props: Employee) {
                     <p className="counter-button">Count is {count} <a onClick={() => setCount(0)}>Reset</a></p>
                 </div>
                 <div className="employee-info">
-                    <EmployeeCard name={props.name} id={props.id} status={status} />
+                    <EmployeeCard name={props.name} id={props.id} status={status} email={props.email} phone={props.phone} />
                 </div>
             </div>
         </div>
