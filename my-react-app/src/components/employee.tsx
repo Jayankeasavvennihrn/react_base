@@ -1,26 +1,46 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Header from './header';
 
 interface Employee {
     name: string;
     id: number;
-    email?: string;
-    phone?: string;
+    email: string;
+    phone: string;
 }
 function Employee() {
 
     const [employee, setEmployee] = useState<Employee | null>(null);
 
-    useEffect(()=> {
-        fetch("https://jsonplaceholder.typicode.com/users/1")
-        .then((res)=> res.json())
-        .then((data)=> {
-            console.log(data);
-            setEmployee(data);
-        })
+    const [loading, setLoading] = useState(true);
+
+    const [error, setError] = useState("");
+
+    useEffect(() => {
+        async function employeeDataCalling() {
+            try {
+                const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
+
+                const data = await response.json();
+                setEmployee(data);
+            } catch (error) {
+                console.log(error);
+                if (error instanceof Error) {
+                    setError(error.message);
+                } else {
+                    setError("Failed to load employee");
+                }
+            } finally {
+                setLoading(false);
+            }
+        }
+
+        employeeDataCalling();
     }, [])
 
-    return <>{employee && <Header name={employee.name} id={employee.id} email={employee.email} phone={employee.phone} />}</>
+    return <>
+        {loading && <p>Loading Employee...</p>}
+        {!loading && !employee && <p>{error}</p>}
+        {employee && !loading && <Header name={employee.name} id={employee.id} email={employee.email} phone={employee.phone} />}</>
 }
 
 export default Employee;
